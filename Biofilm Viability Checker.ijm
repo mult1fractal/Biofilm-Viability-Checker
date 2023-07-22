@@ -15,8 +15,12 @@ Dialog.create("Biofilm Viability Checker");
 Dialog.show();
 suffix = Dialog.getString();
 
+
+// result report genereation----------------
+
+
 print("\\Clear");
-print("Image title" + "\t" + "Percentage of dead bacteria" + "\t" + "Percentage of live bacteria (viability)");
+print("Image title" + "\t" + "Percentage of dead bacteria" + "\t" + "Percentage of live bacteria (viability)"  + "\t" + "amount of live pixels"  + "\t" + "amount of dead pixels"  + "\t" + "amount of total pixels");
 
 overlay=Dialog.getCheckbox();
 gammavalue=1.5;
@@ -145,7 +149,7 @@ selectWindow("Result of Stack-0001");
   path = getDirectory("home")+"histogram-counts.csv";
   saveAs("Results", path); 
 
-
+//-----------------------test here
 
 totalpix=getResult("Count1",255);
 
@@ -155,7 +159,10 @@ deadpixperc=(deadpix/totalpix)*100;
 livepixperc=((totalpix-deadpix)/totalpix)*100;
 //print(d2s(livepixperc,1));
 
-print(title + "\t" + d2s(deadpixperc,1) + "\t" + d2s(livepixperc,1));
+print(title + "\t" + d2s(deadpixperc,1) + "\t" + d2s(livepixperc,1) + "\t" + (totalpix-deadpix) + "\t" + deadpix + "\t" + totalpix);
+
+
+//------------------------------------
 
 //To make an overlay on an rgb image, the outline of the detected dead cells is shown in white and the outline of the live detected cells is shown in green.
 open(input + File.separator + file);
